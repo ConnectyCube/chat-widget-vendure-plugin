@@ -8,7 +8,8 @@ generateTypes(
   {
     plugins: [
       ChatWidgetPlugin.init({
-        enabled: true,
+        appId: 1,
+        authKey: "your-auth-key",
       }),
     ],
   },

@@ -2,6 +2,9 @@ import { PluginCommonModule, VendurePlugin } from "@vendure/core";
 import { examplePermission, PLUGIN_INIT_OPTIONS } from "./constants";
 import { ChatWidgetOptions } from "./types";
 import { ui } from "./ui";
+import { ChatWidgetService } from "./service/chat-widget.service";
+import { ChatWidgetAdminResolver } from "./api/chat-widget-admin.resolver";
+import { adminApiExtensionsTypes } from "./api/api-extensions";
 
 /**
  * This is an example plugin that you can use as the basis for your own custom plugin.
@@ -15,7 +18,12 @@ import { ui } from "./ui";
       provide: PLUGIN_INIT_OPTIONS,
       useFactory: () => ChatWidgetPlugin.options,
     },
+    ChatWidgetService,
   ],
+  adminApiExtensions: {
+    resolvers: [ChatWidgetAdminResolver],
+    schema: adminApiExtensionsTypes,
+  },
   configuration: (config) => {
     config.authOptions.customPermissions.push(examplePermission);
     return config;
@@ -35,7 +43,7 @@ export class ChatWidgetPlugin {
    * @example
    * ```ts
    * ChatWidgetPlugin.init({
-   *     enabled: true,
+   *     ...,
    * }),
    * ```
    */

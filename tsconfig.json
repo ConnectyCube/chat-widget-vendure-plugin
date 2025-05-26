@@ -15,7 +15,7 @@
     "declaration": true,
     "strictPropertyInitialization": false,
     "outDir": "dist",
-     "jsx": "react"
+    "jsx": "react"
   },
   "include": [
     "packages/chat-widget-vendure-plugin/src"

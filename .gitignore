@@ -30,4 +30,4 @@ out-tsc
 speed-measure-plugin*.json
 tmp
 typings
-dev-server/admin-ui
+packages/chat-widget-vendure-plugin/dev-server/admin-ui/

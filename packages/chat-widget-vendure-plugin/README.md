@@ -20,6 +20,44 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
 
 ## Installation
 
+### Backend
+
+1. Add plugin to your Vendure app:
+
+  ```
+  yarn add @connectycube/chat-widget-vendure-plugin
+  ```
+
+2.  Create ConnectyCube account [https://connectycube.com/signup](https://connectycube.com/signup/) and application, obtain credentials
+
+<img width="800" alt="Screenshot 2025-05-07 at 15 19 59" src="https://github.com/user-attachments/assets/77995af3-eb65-4559-8939-e3cc36104862" />
+
+
+3. Add the following variables to your `.env` file:
+
+    ```
+    CONNECTYCUBE_APP_ID=<YOUR CONNECTYCUBE APP ID>
+    CONNECTYCUBE_AUTH_KEY=<YOUR CONNECTYCUBE AUTH KEY>
+    ```
+
+    - `CONNECTYCUBE_APP_ID` - This is essential for authenticating your application with the ConnectyCube platform and accessing its chat services.
+    - `CONNECTYCUBE_AUTH_KEY` - This key is used to authorize your application and ensure secure communication with the ConnectyCube SDK.
+
+4.  Add the following code to your `vendure-config.ts` file:
+
+    ```typescript
+      import { ChatWidgetPlugin } from '@connectycube/chat-widget-vendure-plugin';
+
+      plugins: [
+        ChatWidgetPlugin.init({
+           appId: ...,
+           authKey: ""
+        }),
+      ];
+    ```
+
+### Storefront
+
 TBA
 
 ## Development
@@ -34,6 +72,10 @@ Open the Admin UI at http://localhost:3000/admin in your browser and log in with
 username: superadmin
 password: superadmin
 ```
+
+### Publish
+
+https://docs.vendure.io/guides/how-to/publish-plugin/
 
 ## Have an issue?
 

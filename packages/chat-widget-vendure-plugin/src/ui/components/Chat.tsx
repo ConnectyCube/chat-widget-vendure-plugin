@@ -32,7 +32,7 @@ export function Chat() {
   const { appId, authKey, storeName, storeId } = data?.chatWidgetPluginConfig;
 
   const portalStyles: React.CSSProperties = {
-    minHeight: "calc(100vh - 110px)",
+    // minHeight: "calc(100vh - 110px)",
   };
 
   const store = {
@@ -41,7 +41,7 @@ export function Chat() {
   };
 
   return (
-    <div className="page-block">
+    <div className="page-block" style={{ height: "calc(100vh - 255px)" }}>
       <ConnectyCubeChatWidget
         appId={appId}
         authKey={authKey}

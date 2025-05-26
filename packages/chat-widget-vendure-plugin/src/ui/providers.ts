@@ -8,7 +8,7 @@ export default [
       items: [
         {
           id: "chat",
-          label: "Chat Widget",
+          label: "Chat",
           routerLink: ["/extensions/chat"],
         },
       ],

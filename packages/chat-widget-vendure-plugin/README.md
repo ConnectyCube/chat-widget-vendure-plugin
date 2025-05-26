@@ -51,7 +51,9 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
       plugins: [
         ChatWidgetPlugin.init({
            appId: ...,
-           authKey: ""
+           authKey: "",
+           storeName: "",
+           storeId: ""
         }),
       ];
     ```

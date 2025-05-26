@@ -35,15 +35,17 @@ export const config: VendureConfig = {
   plugins: [
     DefaultSearchPlugin.init({}),
     ChatWidgetPlugin.init({
-      appId: 1,
-      authKey: "your-auth-key",
+      appId: 8454,
+      authKey: "59526294-1DAF-4A4C-A80F-5A3FB3250836",
+      storeName: "MyStore",
+      storeId: "59526294",
     }),
     AdminUiPlugin.init({
       port: 3002,
       route: "admin",
       adminUiConfig: {
         apiPort: +apiPort,
-        apiHost: "http://localhost"
+        apiHost: "http://localhost",
       },
       app: compileUiExtensions({
         devMode: true,

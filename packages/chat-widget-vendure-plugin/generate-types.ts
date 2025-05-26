@@ -10,6 +10,8 @@ generateTypes(
       ChatWidgetPlugin.init({
         appId: 1,
         authKey: "your-auth-key",
+        storeName: "MyStore",
+        storeId: "1",
       }),
     ],
   },

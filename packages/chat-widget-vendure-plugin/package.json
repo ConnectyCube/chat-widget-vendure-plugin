@@ -18,5 +18,8 @@
         "codegen": "ts-node generate-types.ts",
         "build": "rimraf dist && tsc -p ./tsconfig.build.json && ts-node copy-ui-src.ts",
         "e2e": "cross-env PACKAGE=example-plugin vitest -c ../../utils/e2e/vitest.config.mts"
+    },
+    "dependencies": {
+        "@connectycube/chat-widget": "^0.26.0"
     }
 }

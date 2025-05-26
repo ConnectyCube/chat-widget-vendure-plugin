@@ -7,5 +7,7 @@ export const adminApiExtensionsTypes = gql`
   type ChatWidgetPluginConfig {
     authKey: String!
     appId: Int!
+    storeName: String!
+    storeId: String!
   }
 `;

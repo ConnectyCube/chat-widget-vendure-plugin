@@ -11,3 +11,8 @@ npm run dev
 ```
 
 open http://localhost:4200/admin and test 
+
+```
+username: superadmin
+password: superadmin
+```

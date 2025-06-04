@@ -25,35 +25,24 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
 1. Add plugin to your Vendure app:
 
   ```
-  yarn add @connectycube/chat-widget-vendure-plugin
+  yarn add @connectycube/vendure-plugin-chat-widget
   ```
 
 2.  Create ConnectyCube account [https://connectycube.com/signup](https://connectycube.com/signup/) and application, obtain credentials
 
 <img width="800" alt="Screenshot 2025-05-07 at 15 19 59" src="https://github.com/user-attachments/assets/77995af3-eb65-4559-8939-e3cc36104862" />
 
-
-3. Add the following variables to your `.env` file:
-
-    ```
-    CONNECTYCUBE_APP_ID=<YOUR CONNECTYCUBE APP ID>
-    CONNECTYCUBE_AUTH_KEY=<YOUR CONNECTYCUBE AUTH KEY>
-    ```
-
-    - `CONNECTYCUBE_APP_ID` - This is essential for authenticating your application with the ConnectyCube platform and accessing its chat services.
-    - `CONNECTYCUBE_AUTH_KEY` - This key is used to authorize your application and ensure secure communication with the ConnectyCube SDK.
-
-4.  Add the following code to your `vendure-config.ts` file:
+3.  Add the following code to your `vendure-config.ts` file:
 
     ```typescript
-      import { ChatWidgetPlugin } from '@connectycube/chat-widget-vendure-plugin';
+      import { ChatWidgetPlugin } from '@connectycube/vendure-plugin-chat-widget';
 
       plugins: [
         ChatWidgetPlugin.init({
-           appId: ...,
-           authKey: "",
-           storeName: "",
-           storeId: ""
+           appId: ..., // ConnectyCube App Id
+           authKey: "", // ConnectyCube Auth Key
+           storeName: "", // A name of your store (any string, will be visible by buyer)
+           storeId: "" // Some uniq identifier of your store (any uniq string)
         }),
       ];
     ```
@@ -62,22 +51,14 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
 
 TBA
 
-## Development
+## How can I use it?
 
-```
-npm run dev
-```
+On storefront, once logged in and opened product page, there will be a Chat toggle button bottom right.
 
-Open the Admin UI at http://localhost:3000/admin in your browser and log in with the superadmin credentials which default to:
+From Vendure dashboard there will be a new page called Chat, with the widget embedded, where all customers' chats are displayed, so you as a merchant can reply:
 
-```
-username: superadmin
-password: superadmin
-```
+<img width="1509" alt="Screenshot 2025-05-07 at 16 38 13" src="https://github.com/user-attachments/assets/13cefe90-216b-46bb-94b3-ac754df4de74" />
 
-### Publish
-
-https://docs.vendure.io/guides/how-to/publish-plugin/
 
 ## Have an issue?
 

@@ -1,15 +1,17 @@
 {
-    "name": "@connectycube/chat-widget-vendure-plugin",
-    "description": "A chat widget Vendure plugin",
+    "name": "@connectycube/vendure-plugin-chat-widget",
+    "description": "Vendure plugin for buyer-seller communication via chat widget",
     "version": "0.10.0",
     "license": "Apache 2.0",
+    "homepage": "https://connectycube.com/chat-widget",
+    "author": "ConnectyCube",
     "publishConfig": {
         "access": "public"
     },
     "files": [
         "dist/**/*",
         "CHANGELOG.md",
-        "docs"
+        "README.md"
     ],
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -20,6 +22,6 @@
         "e2e": "cross-env PACKAGE=example-plugin vitest -c ../../utils/e2e/vitest.config.mts"
     },
     "dependencies": {
-        "@connectycube/chat-widget": "^0.26.0"
+        "@connectycube/chat-widget": "0.27.0"
     }
 }

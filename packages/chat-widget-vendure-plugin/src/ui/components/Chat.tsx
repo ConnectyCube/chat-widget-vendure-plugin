@@ -32,7 +32,7 @@ export function Chat() {
   const { appId, authKey, storeName, storeId } = data?.chatWidgetPluginConfig;
 
   const portalStyles: React.CSSProperties = {
-    // minHeight: "calc(100vh - 110px)",
+    fontWeight: "400",
   };
 
   const store = {

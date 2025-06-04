@@ -30,7 +30,7 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
 
 2.  Create ConnectyCube account [https://connectycube.com/signup](https://connectycube.com/signup/) and application, obtain credentials
 
-<img width="800" alt="Screenshot 2025-05-07 at 15 19 59" src="https://github.com/user-attachments/assets/77995af3-eb65-4559-8939-e3cc36104862" />
+<img width="1511" alt="Screenshot 2025-06-04 at 10 36 59" src="https://github.com/user-attachments/assets/98862827-619a-4cfc-a847-2a982f562e90" />
 
 3.  Add the following code to your `vendure-config.ts` file:
 

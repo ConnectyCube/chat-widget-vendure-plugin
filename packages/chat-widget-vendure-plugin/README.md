@@ -57,7 +57,7 @@ On storefront, once logged in and opened product page, there will be a Chat togg
 
 From Vendure dashboard there will be a new page called Chat, with the widget embedded, where all customers' chats are displayed, so you as a merchant can reply:
 
-<img width="1509" alt="Screenshot 2025-05-07 at 16 38 13" src="https://github.com/user-attachments/assets/13cefe90-216b-46bb-94b3-ac754df4de74" />
+<img width="1494" alt="Screenshot 2025-06-04 at 10 34 04" src="https://github.com/user-attachments/assets/89fa5d5e-2022-4566-801c-3948f6ea6a84" />
 
 
 ## Have an issue?

@@ -4,15 +4,4 @@ This repo is a set of ConnectyCube developed plugins for Vendure
 
 ## Chat Widget plugin 
 
-```
-npm i
-cd packages/chat-widget-vendure-plugin
-npm run dev
-```
-
-open http://localhost:4200/admin and test 
-
-```
-username: superadmin
-password: superadmin
-```
+https://github.com/ConnectyCube/chat-widget-vendure-plugin/tree/main/packages/chat-widget-vendure-plugin

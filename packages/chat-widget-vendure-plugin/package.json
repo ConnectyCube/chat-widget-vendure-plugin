@@ -3,6 +3,7 @@
     "description": "Vendure plugin for buyer-seller communication via chat widget",
     "version": "0.10.0",
     "license": "Apache 2.0",
+    "repository": "https://github.com/ConnectyCube/chat-widget-vendure-plugin",
     "homepage": "https://connectycube.com/chat-widget",
     "author": "ConnectyCube",
     "publishConfig": {

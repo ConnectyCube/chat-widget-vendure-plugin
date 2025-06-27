@@ -30,7 +30,7 @@ jobs:
         working-directory: packages/chat-widget-vendure-plugin
         
       - name: Run npm build
-        run: npm build
+        run: npm run build
         working-directory: packages/chat-widget-vendure-plugin
 
       - name: Publish

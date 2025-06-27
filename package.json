@@ -1,9 +1,10 @@
 {
   "name": "@connectycube/vendure-plugins",
-  "version": "1.0.0",
-  "description": "Plugin template",
-  "repository": "https://github.com/vendure-ecommerce/plugin-template",
-  "license": "MIT",
+  "version": "0.10.0",
+  "description": "ConnectyCube Vendure plugins repo",
+  "repository": "https://github.com/ConnectyCube/chat-widget-vendure-plugin",
+  "author": "ConnectyCube",
+  "license": "Apache 2.0",
   "private": false,
   "engines": {
     "node": ">=20.0.0"

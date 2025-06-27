@@ -26,6 +26,7 @@
     "@connectycube/chat-widget": "0.31.0"
   },
   "devDependencies": {
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "@types/node": "^24.0.4"
   }
 }

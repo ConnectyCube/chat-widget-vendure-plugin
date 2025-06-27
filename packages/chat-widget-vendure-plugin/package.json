@@ -22,6 +22,6 @@
         "e2e": "cross-env PACKAGE=example-plugin vitest -c ../../utils/e2e/vitest.config.mts"
     },
     "dependencies": {
-        "@connectycube/chat-widget": "0.27.0"
+        "@connectycube/chat-widget": "0.31.0"
     }
 }

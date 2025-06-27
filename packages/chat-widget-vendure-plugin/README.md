@@ -49,11 +49,167 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
 
 ### Storefront
 
-TBA
+1. Add chat widget to your Storefront app. For example, let's use [Remix storefront starter](https://github.com/vendure-ecommerce/storefront-remix-starter) as an example:
 
+  ```
+    yarn add @connectycube/chat-widget
+  ```
+
+2. Add the following variables to your `.env` file:
+
+  ```
+    CHAT_WIDGET_CONNECTYCUBE_APP_ID=<CONNECTYCUBE APP ID>
+    CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY="<CONNECTYCUBE AUTH KEY>
+    CHAT_WIDGET_STORE_ID=<YOUR STORE ID>
+    CHAT_WIDGET_STORE_NAME=<YOUR STORE NAME>
+  ```
+
+3. Create `app/components/ChatWidget.tsx` component with the following content:
+
+  ```typescript
+    import { useEffect, useState } from 'react';
+    import ConnectyCubeChatWidget from '@connectycube/chat-widget';
+
+    type StoreCustomer = {
+      id: string;
+      firstName: string;
+      lastName: string;
+    };
+
+    type StoreProduct = {
+      id: string;
+      title: string;
+    };
+
+    export interface ChatWidgetProps {
+      customer: StoreCustomer | null;
+      product: StoreProduct;
+      chatPerProduct?: boolean;
+    }
+
+    export default function ChatWidget({
+      customer,
+      product,
+      chatPerProduct,
+    }: ChatWidgetProps) {
+      const quickActions = {
+        title: 'Quick Actions',
+        description:
+          'Select an action from the options below or type a first message to start a conversation.',
+        actions: [
+          "Hi, I'm interested in this product.",
+          'Can you tell me more about the price and payment options?',
+          'Is the product still available?',
+          'Can I schedule a viewing?',
+        ],
+      };
+
+      if (!customer) {
+        return null;
+      }
+
+      const [defaultChat, setDefaultChat] = useState<any>(null);
+      const [isOpen, setIsOpen] = useState<boolean>(false);
+
+      const onOpenCloseWidget = (isOpen: boolean) => {
+        setIsOpen(isOpen);
+      };
+
+      const storeId = process.env.CHAT_WIDGET_STORE_ID;
+      const storeName = process.env.CHAT_WIDGET_STORE_NAME;
+
+      useEffect(() => {
+        if (isOpen) {
+          console.log('Widget is open:', isOpen);
+          const defaultChatKey = chatPerProduct ? product.id : storeId;
+          const defaultChatName = chatPerProduct ? product.title : storeName;
+
+          setDefaultChat({
+            id: defaultChatKey,
+            opponentUserId: storeId,
+            type: 'group',
+            name: defaultChatName,
+          });
+        }
+      }, [isOpen]);
+
+      return (
+        <div>
+          <ConnectyCubeChatWidget
+            // credentials
+            appId={process.env.CHAT_WIDGET_CONNECTYCUBE_APP_ID}
+            authKey={process.env.CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY}
+            userId={customer.id}
+            userName={`${customer.firstName} ${customer.lastName}`}
+            // settings
+            showOnlineUsersTab={false}
+            splitView={true}
+            // quick actions
+            quickActions={quickActions}
+            // notifications
+            showNotifications={true}
+            playSound={true}
+            // moderation
+            enableContentReporting={true}
+            enableBlockList={true}
+            // last seen
+            enableLastSeen={true}
+            // url preview
+            enableUrlPreview={true}
+            limitUrlsPreviews={1}
+            // attachments settings
+            attachmentsAccept={'image/*,video/*,.pdf,audio/*'}
+            // default chat
+            defaultChat={defaultChat}
+            onOpenChange={onOpenCloseWidget}
+          />
+        </div>
+      );
+    }
+  ```
+
+4. update `remix.config.js`:
+
+  ```typescript
+    const commonConfig = {
+      ...
+      browserNodeBuiltinsPolyfill: { modules: { events: true } },
+    };
+  ```
+
+5. Finally, connect `ChatWidget` component on product details page, e.g. `app/routes/products.$slug.tsx`
+   
+  ```typescript
+    export async function loader({ params, request }: DataFunctionArgs) {
+      ...
+
+      const activeCustomer = await getActiveCustomer({ request });
+
+      return json({ activeCustomer })
+    }
+
+    export default function ProductSlug() {
+      ...
+
+      const { product, activeCustomer } = useLoaderData<typeof loader>();
+
+      return (
+        <div>
+          ...
+
+          <ChatWidget
+            customer={activeCustomer.activeCustomer!}
+            product={{ title: product.name, id: product.id }}
+            chatPerProduct={true}
+          />
+        </div>
+      )
+    }
+  ```
+    
 ## How can I use it?
 
-On storefront, once logged in and opened product page, there will be a Chat toggle button bottom right.
+On storefront, once logged in and opened product page, there will be a Chat toggle button bottom right where customers can contact the merchant.
 
 From Vendure dashboard there will be a new page called Chat, with the widget embedded, where all customers' chats are displayed, so you as a merchant can reply:
 

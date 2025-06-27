@@ -25,12 +25,12 @@ jobs:
             node-version: '20.x'
             registry-url: 'https://registry.npmjs.org'
         
-      - name: Run yarn install
-        run: yarn
+      - name: Run npm install
+        run: npm install
         working-directory: packages/chat-widget-vendure-plugin
         
-      - name: Run yarn build
-        run: yarn build
+      - name: Run npm build
+        run: npm build
         working-directory: packages/chat-widget-vendure-plugin
 
       - name: Publish

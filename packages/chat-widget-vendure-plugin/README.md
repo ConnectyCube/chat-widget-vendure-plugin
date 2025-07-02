@@ -81,16 +81,25 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
       title: string;
     };
 
+    export type ChatWidgetEnv = {
+      CHAT_WIDGET_STORE_ID: string;
+      CHAT_WIDGET_STORE_NAME: string;
+      CHAT_WIDGET_CONNECTYCUBE_APP_ID: string;
+      CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY: string;
+    };
+
     export interface ChatWidgetProps {
       customer: StoreCustomer | null;
       product: StoreProduct;
       chatPerProduct?: boolean;
+      env: ChatWidgetEnv;
     }
 
     export default function ChatWidget({
       customer,
       product,
       chatPerProduct,
+      env
     }: ChatWidgetProps) {
       const quickActions = {
         title: 'Quick Actions',
@@ -115,8 +124,8 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
         setIsOpen(isOpen);
       };
 
-      const storeId = process.env.CHAT_WIDGET_STORE_ID;
-      const storeName = process.env.CHAT_WIDGET_STORE_NAME;
+      const storeId = env.CHAT_WIDGET_STORE_ID;
+      const storeName = env.CHAT_WIDGET_STORE_NAME;
 
       useEffect(() => {
         if (isOpen) {
@@ -137,8 +146,8 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
         <div>
           <ConnectyCubeChatWidget
             // credentials
-            appId={process.env.CHAT_WIDGET_CONNECTYCUBE_APP_ID}
-            authKey={process.env.CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY}
+            appId={env.CHAT_WIDGET_CONNECTYCUBE_APP_ID}
+            authKey={env.CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY}
             userId={customer.id}
             userName={`${customer.firstName} ${customer.lastName}`}
             // settings
@@ -180,18 +189,31 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
 5. Finally, connect `ChatWidget` component on product details page, e.g. `app/routes/products.$slug.tsx`
    
   ```typescript
+    import ChatWidget, { ChatWidgetEnv } from '~/components/ChatWidget';
+
+    ...
+
     export async function loader({ params, request }: DataFunctionArgs) {
       ...
 
+      const { product } = await getProductBySlug(params.slug!, { request });
+
       const activeCustomer = await getActiveCustomer({ request });
 
-      return json({ activeCustomer })
+      return json({ product: product!, activeCustomer, ENV: {
+        CHAT_WIDGET_STORE_ID: process.env.CHAT_WIDGET_STORE_ID,
+        CHAT_WIDGET_STORE_NAME: process.env.CHAT_WIDGET_STORE_NAME,
+        CHAT_WIDGET_CONNECTYCUBE_APP_ID:
+          process.env.CHAT_WIDGET_CONNECTYCUBE_APP_ID,
+        CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY:
+          process.env.CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY,
+      }})
     }
 
     export default function ProductSlug() {
       ...
 
-      const { product, activeCustomer } = useLoaderData<typeof loader>();
+      const { product, activeCustomer, ENV } = useLoaderData<typeof loader>();
 
       return (
         <div>
@@ -201,6 +223,7 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
             customer={activeCustomer.activeCustomer!}
             product={{ title: product.name, id: product.id }}
             chatPerProduct={true}
+            env={ENV as ChatWidgetEnv}
           />
         </div>
       )

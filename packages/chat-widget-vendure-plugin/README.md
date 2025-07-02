@@ -28,9 +28,13 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
   yarn add @connectycube/vendure-plugin-chat-widget
   ```
 
-2.  Create ConnectyCube account [https://connectycube.com/signup](https://connectycube.com/signup/) and application, obtain credentials
+2.  Create ConnectyCube account [https://connectycube.com/signup](https://connectycube.com/signup/) and application, obtain credentials:
 
 <img width="1511" alt="Screenshot 2025-06-04 at 10 36 59" src="https://github.com/user-attachments/assets/98862827-619a-4cfc-a847-2a982f562e90" />
+
+Also, go to **Chat -> Custom Fields** and create a new custom field called `externalId`:
+
+<img width="1512" alt="Screenshot 2025-07-02 at 12 24 35" src="https://github.com/user-attachments/assets/868646d2-bdda-4634-aadd-629777cdf24e" />
 
 3.  Add the following code to your `vendure-config.ts` file:
 

@@ -232,12 +232,13 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
     
 ## How can I use it?
 
-On storefront, once logged in and opened product page, there will be a Chat toggle button bottom right where customers can contact the merchant.
+On storefront, once logged in and opened product page, there will be a Chat toggle button bottom right where customers can contact the merchant:
+
+<img width="1502" alt="Screenshot 2025-07-02 at 12 14 00" src="https://github.com/user-attachments/assets/d27d7761-0aff-4291-bc34-f27d4eedcb95" />
 
 From Vendure dashboard there will be a new page called Chat, with the widget embedded, where all customers' chats are displayed, so you as a merchant can reply:
 
-<img width="1494" alt="Screenshot 2025-06-04 at 10 34 04" src="https://github.com/user-attachments/assets/89fa5d5e-2022-4566-801c-3948f6ea6a84" />
-
+<img width="1503" alt="Screenshot 2025-07-02 at 12 13 44" src="https://github.com/user-attachments/assets/9dd3f4ac-b395-4052-a12e-787444a56ab1" />
 
 ## Have an issue?
 

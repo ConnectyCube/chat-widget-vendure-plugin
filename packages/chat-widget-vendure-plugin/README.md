@@ -2,6 +2,8 @@
 
 Vendure plugin to integrate Chat Widget for seller/buyer communication
 
+<img width="1502" alt="Screenshot 2025-07-02 at 12 14 00" src="https://github.com/user-attachments/assets/d27d7761-0aff-4291-bc34-f27d4eedcb95" />
+
 ## Features
 
 - **Easy Integration**
@@ -57,6 +59,7 @@ Also, go to **Chat -> Custom Fields** and create a new custom field called `exte
 
   ```
     yarn add @connectycube/chat-widget
+    yarn connectycube patch-ssr     # Apply SSR patches for Remix to work well
   ```
 
 2. Add the following variables to your `.env` file:

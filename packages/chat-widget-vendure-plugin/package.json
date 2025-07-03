@@ -1,7 +1,7 @@
 {
   "name": "@connectycube/vendure-plugin-chat-widget",
   "description": "Vendure plugin for buyer-seller communication via chat widget",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "license": "Apache 2.0",
   "repository": "https://github.com/ConnectyCube/chat-widget-vendure-plugin",
   "homepage": "https://connectycube.com/chat-widget",
@@ -23,7 +23,7 @@
     "e2e": "cross-env PACKAGE=example-plugin vitest -c ../../utils/e2e/vitest.config.mts"
   },
   "dependencies": {
-    "@connectycube/chat-widget": "0.31.0"
+    "@connectycube/chat-widget": "0.32.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.2",

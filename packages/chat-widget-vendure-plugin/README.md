@@ -28,9 +28,13 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
   yarn add @connectycube/vendure-plugin-chat-widget
   ```
 
-2.  Create ConnectyCube account [https://connectycube.com/signup](https://connectycube.com/signup/) and application, obtain credentials
+2.  Create ConnectyCube account [https://connectycube.com/signup](https://connectycube.com/signup/) and application, obtain credentials:
 
 <img width="1511" alt="Screenshot 2025-06-04 at 10 36 59" src="https://github.com/user-attachments/assets/98862827-619a-4cfc-a847-2a982f562e90" />
+
+Also, go to **Chat -> Custom Fields** and create a new custom field called `externalId`:
+
+<img width="1512" alt="Screenshot 2025-07-02 at 12 24 35" src="https://github.com/user-attachments/assets/868646d2-bdda-4634-aadd-629777cdf24e" />
 
 3.  Add the following code to your `vendure-config.ts` file:
 
@@ -81,16 +85,25 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
       title: string;
     };
 
+    export type ChatWidgetEnv = {
+      CHAT_WIDGET_STORE_ID: string;
+      CHAT_WIDGET_STORE_NAME: string;
+      CHAT_WIDGET_CONNECTYCUBE_APP_ID: string;
+      CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY: string;
+    };
+
     export interface ChatWidgetProps {
       customer: StoreCustomer | null;
       product: StoreProduct;
       chatPerProduct?: boolean;
+      env: ChatWidgetEnv;
     }
 
     export default function ChatWidget({
       customer,
       product,
       chatPerProduct,
+      env
     }: ChatWidgetProps) {
       const quickActions = {
         title: 'Quick Actions',
@@ -115,8 +128,8 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
         setIsOpen(isOpen);
       };
 
-      const storeId = process.env.CHAT_WIDGET_STORE_ID;
-      const storeName = process.env.CHAT_WIDGET_STORE_NAME;
+      const storeId = env.CHAT_WIDGET_STORE_ID;
+      const storeName = env.CHAT_WIDGET_STORE_NAME;
 
       useEffect(() => {
         if (isOpen) {
@@ -137,8 +150,8 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
         <div>
           <ConnectyCubeChatWidget
             // credentials
-            appId={process.env.CHAT_WIDGET_CONNECTYCUBE_APP_ID}
-            authKey={process.env.CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY}
+            appId={env.CHAT_WIDGET_CONNECTYCUBE_APP_ID}
+            authKey={env.CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY}
             userId={customer.id}
             userName={`${customer.firstName} ${customer.lastName}`}
             // settings
@@ -180,18 +193,31 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
 5. Finally, connect `ChatWidget` component on product details page, e.g. `app/routes/products.$slug.tsx`
    
   ```typescript
+    import ChatWidget, { ChatWidgetEnv } from '~/components/ChatWidget';
+
+    ...
+
     export async function loader({ params, request }: DataFunctionArgs) {
       ...
 
+      const { product } = await getProductBySlug(params.slug!, { request });
+
       const activeCustomer = await getActiveCustomer({ request });
 
-      return json({ activeCustomer })
+      return json({ product: product!, activeCustomer, ENV: {
+        CHAT_WIDGET_STORE_ID: process.env.CHAT_WIDGET_STORE_ID,
+        CHAT_WIDGET_STORE_NAME: process.env.CHAT_WIDGET_STORE_NAME,
+        CHAT_WIDGET_CONNECTYCUBE_APP_ID:
+          process.env.CHAT_WIDGET_CONNECTYCUBE_APP_ID,
+        CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY:
+          process.env.CHAT_WIDGET_CONNECTYCUBE_AUTH_KEY,
+      }})
     }
 
     export default function ProductSlug() {
       ...
 
-      const { product, activeCustomer } = useLoaderData<typeof loader>();
+      const { product, activeCustomer, ENV } = useLoaderData<typeof loader>();
 
       return (
         <div>
@@ -201,6 +227,7 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
             customer={activeCustomer.activeCustomer!}
             product={{ title: product.name, id: product.id }}
             chatPerProduct={true}
+            env={ENV as ChatWidgetEnv}
           />
         </div>
       )
@@ -209,12 +236,13 @@ Vendure plugin to integrate Chat Widget for seller/buyer communication
     
 ## How can I use it?
 
-On storefront, once logged in and opened product page, there will be a Chat toggle button bottom right where customers can contact the merchant.
+On storefront, once logged in and opened product page, there will be a Chat toggle button bottom right where customers can contact the merchant:
+
+<img width="1502" alt="Screenshot 2025-07-02 at 12 14 00" src="https://github.com/user-attachments/assets/d27d7761-0aff-4291-bc34-f27d4eedcb95" />
 
 From Vendure dashboard there will be a new page called Chat, with the widget embedded, where all customers' chats are displayed, so you as a merchant can reply:
 
-<img width="1494" alt="Screenshot 2025-06-04 at 10 34 04" src="https://github.com/user-attachments/assets/89fa5d5e-2022-4566-801c-3948f6ea6a84" />
-
+<img width="1503" alt="Screenshot 2025-07-02 at 12 13 44" src="https://github.com/user-attachments/assets/9dd3f4ac-b395-4052-a12e-787444a56ab1" />
 
 ## Have an issue?
 

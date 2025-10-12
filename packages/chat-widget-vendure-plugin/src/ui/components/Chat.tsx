@@ -55,14 +55,14 @@ export function Chat() {
   const localStorageService = useInjector(LocalStorageService);
 
   const activeChannelToken = localStorageService.get("activeChannelToken");
-  // console.log("activeChannelToken", activeChannelToken);
+  console.log("[ChatPlugin] activeChannelToken", activeChannelToken);
 
   const { data: dataConfig, error } = useQuery<ChatWidgetPluginConfig>(
     GET_CHAT_WIDGET_PLUGIN_CONFIG,
   );
 
   const { data: dataChannels } = useQuery<ChannelsResponse>(GET_CHANNELS);
-  // console.log("dataChannels", dataChannels);
+  console.log("[ChatPlugin] dataChannels", dataChannels);
 
   const activeSeller = useMemo(() => {
     if (dataChannels) {
@@ -73,10 +73,9 @@ export function Chat() {
     }
   }, [dataChannels]);
 
-  console.log({ activeSeller });
-
   if (!dataConfig?.chatWidgetPluginConfig) return <div>Loading chat</div>;
   if (error) return <div>Error: {error}</div>;
+
   const { appId, authKey, storeName, storeId } =
     dataConfig?.chatWidgetPluginConfig;
 
@@ -85,11 +84,15 @@ export function Chat() {
   };
 
   const store = {
-    id: storeId,
-    name: storeName,
+    id: storeId || (activeSeller ? String(activeSeller.id) : undefined),
+    name: storeName || activeSeller?.name,
   };
 
-  console.log("store", store);
+  if (!store.id) return <div>Loading chat</div>;
+
+  console.log("[ChatPlugin] activeSeller", activeSeller);
+  console.log("[ChatPlugin] dataConfig", dataConfig);
+  console.log("[ChatPlugin] store", store);
 
   return (
     <div className="page-block" style={{ height: "calc(100vh - 255px)" }}>

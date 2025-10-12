@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@vendure/admin-ui/react";
 import { gql } from "graphql-tag";
-import ConnectyCubeChatWidget from "@connectycube/chat-widget";
+import ConnectyCubeChatWidget from "@connectycube/chat-widget"; // dedicated React 18 build
 
 export const GET_CHAT_WIDGET_PLUGIN_CONFIG = gql`
   query GET_CHAT_WIDGET_PLUGIN_CONFIG {
@@ -10,6 +10,19 @@ export const GET_CHAT_WIDGET_PLUGIN_CONFIG = gql`
       authKey
       storeName
       storeId
+    }
+  }
+`;
+
+export const GET_SELLERS = gql`
+  query GetSellers {
+    sellers {
+      items {
+        id
+        createdAt
+        name
+      }
+      totalItems
     }
   }
 `;
@@ -23,13 +36,21 @@ type ChatWidgetPluginConfig = {
   };
 };
 export function Chat() {
-  const { data, loading, error } = useQuery<ChatWidgetPluginConfig>(
-    GET_CHAT_WIDGET_PLUGIN_CONFIG,
-  );
+  const {
+    data: dataConfig,
+    loading,
+    error,
+  } = useQuery<ChatWidgetPluginConfig>(GET_CHAT_WIDGET_PLUGIN_CONFIG);
 
-  if (!data?.chatWidgetPluginConfig) return <div>Loading chat</div>;
+  const { data: dataSellers, error: errorSellers } =
+    useQuery<ChatWidgetPluginConfig>(GET_SELLERS);
+
+  console.log({ dataSellers, errorSellers });
+
+  if (!dataConfig?.chatWidgetPluginConfig) return <div>Loading chat</div>;
   if (error) return <div>Error: {error}</div>;
-  const { appId, authKey, storeName, storeId } = data?.chatWidgetPluginConfig;
+  const { appId, authKey, storeName, storeId } =
+    dataConfig?.chatWidgetPluginConfig;
 
   const portalStyles: React.CSSProperties = {
     fontWeight: "400",
@@ -39,6 +60,8 @@ export function Chat() {
     id: storeId,
     name: storeName,
   };
+
+  console.log("store", store);
 
   return (
     <div className="page-block" style={{ height: "calc(100vh - 255px)" }}>

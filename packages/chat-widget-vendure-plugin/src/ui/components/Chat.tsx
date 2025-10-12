@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useQuery } from "@vendure/admin-ui/react";
 import { gql } from "graphql-tag";
 import ConnectyCubeChatWidget from "@connectycube/chat-widget"; // dedicated React 18 build
+import { useInjector } from "@vendure/admin-ui/react";
+import { LocalStorageService } from "@vendure/admin-ui/core";
+import { Channel } from "@vendure/core";
 
 export const GET_CHAT_WIDGET_PLUGIN_CONFIG = gql`
   query GET_CHAT_WIDGET_PLUGIN_CONFIG {
@@ -14,13 +17,18 @@ export const GET_CHAT_WIDGET_PLUGIN_CONFIG = gql`
   }
 `;
 
-export const GET_SELLERS = gql`
-  query GetSellers {
-    sellers {
+export const GET_CHANNELS = gql`
+  query GetChannels {
+    channels {
       items {
         id
+        code
+        token
         createdAt
-        name
+        seller {
+          id
+          name
+        }
       }
       totalItems
     }
@@ -35,17 +43,37 @@ type ChatWidgetPluginConfig = {
     storeId: string;
   };
 };
+
+type ChannelsResponse = {
+  channels: {
+    items: Channel[];
+  };
+};
+
 export function Chat() {
-  const {
-    data: dataConfig,
-    loading,
-    error,
-  } = useQuery<ChatWidgetPluginConfig>(GET_CHAT_WIDGET_PLUGIN_CONFIG);
+  // https://docs.vendure.io/guides/extending-the-admin-ui/defining-routes/#injecting-services
+  const localStorageService = useInjector(LocalStorageService);
 
-  const { data: dataSellers, error: errorSellers } =
-    useQuery<ChatWidgetPluginConfig>(GET_SELLERS);
+  const activeChannelToken = localStorageService.get("activeChannelToken");
+  // console.log("activeChannelToken", activeChannelToken);
 
-  console.log({ dataSellers, errorSellers });
+  const { data: dataConfig, error } = useQuery<ChatWidgetPluginConfig>(
+    GET_CHAT_WIDGET_PLUGIN_CONFIG,
+  );
+
+  const { data: dataChannels } = useQuery<ChannelsResponse>(GET_CHANNELS);
+  // console.log("dataChannels", dataChannels);
+
+  const activeSeller = useMemo(() => {
+    if (dataChannels) {
+      const channel = dataChannels.channels.items.find(
+        (channel) => channel.token === activeChannelToken,
+      );
+      return channel?.seller;
+    }
+  }, [dataChannels]);
+
+  console.log({ activeSeller });
 
   if (!dataConfig?.chatWidgetPluginConfig) return <div>Loading chat</div>;
   if (error) return <div>Error: {error}</div>;

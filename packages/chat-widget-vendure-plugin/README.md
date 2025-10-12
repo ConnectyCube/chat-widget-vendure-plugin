@@ -47,11 +47,15 @@ Also, go to **Chat -> Custom Fields** and create a new custom field called `exte
         ChatWidgetPlugin.init({
            appId: ..., // ConnectyCube App Id
            authKey: "", // ConnectyCube Auth Key
-           storeName: "", // A name of your store (any string, will be visible by buyer)
-           storeId: "" // Some uniq identifier of your store (any uniq string)
         }),
       ];
     ```
+
+4. Set proper Seller name in **Vendure Dashboard > Settings > Sellers**. The plugin uses Seller entity to identify your store, mainly it's **name** field - this is how your store customers will see your name in chat widget when communicate. So set the proper name of Seller, e.g. **My Awesome Store**. 
+
+#### Multi-vendor Marketplaces
+
+In a case you have [Multi-vendor Marketplace](https://docs.vendure.io/guides/how-to/multi-vendor-marketplaces/), this plugin also can serve well. No extra configuration of plugin is needed.
 
 ### Storefront
 

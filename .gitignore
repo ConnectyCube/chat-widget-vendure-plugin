@@ -15,6 +15,7 @@
 .settings/
 .temp
 .vscode
+.yarn
 Thumbs.db
 __data__
 bazel-out

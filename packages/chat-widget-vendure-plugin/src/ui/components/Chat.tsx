@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@vendure/admin-ui/react";
 import { gql } from "graphql-tag";
-import ConnectyCubeChatWidget from "@connectycube/chat-widget";
+import ConnectyCubeChatWidget from "@connectycube/chat-widget/react19";
 
 export const GET_CHAT_WIDGET_PLUGIN_CONFIG = gql`
   query GET_CHAT_WIDGET_PLUGIN_CONFIG {

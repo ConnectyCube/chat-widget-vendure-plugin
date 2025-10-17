@@ -55,14 +55,14 @@ export function Chat() {
   const localStorageService = useInjector(LocalStorageService);
 
   const activeChannelToken = localStorageService.get("activeChannelToken");
-  console.log("[ChatPlugin] activeChannelToken", activeChannelToken);
+  // console.log("[ChatPlugin] activeChannelToken", activeChannelToken);
 
   const { data: dataConfig, error } = useQuery<ChatWidgetPluginConfig>(
     GET_CHAT_WIDGET_PLUGIN_CONFIG,
   );
 
   const { data: dataChannels } = useQuery<ChannelsResponse>(GET_CHANNELS);
-  console.log("[ChatPlugin] dataChannels", dataChannels);
+  // console.log("[ChatPlugin] dataChannels", dataChannels);
 
   const activeSeller = useMemo(() => {
     if (dataChannels) {
@@ -90,9 +90,9 @@ export function Chat() {
 
   if (!store.id) return <div>Loading chat</div>;
 
-  console.log("[ChatPlugin] activeSeller", activeSeller);
-  console.log("[ChatPlugin] dataConfig", dataConfig);
-  console.log("[ChatPlugin] store", store);
+  // console.log("[ChatPlugin] activeSeller", activeSeller);
+  // console.log("[ChatPlugin] dataConfig", dataConfig);
+  // console.log("[ChatPlugin] store", store);
 
   return (
     <div className="page-block" style={{ height: "calc(100vh - 255px)" }}>
@@ -106,12 +106,6 @@ export function Chat() {
         embedView={true}
         hideWidgetButton={true}
         portalStyle={portalStyles}
-        onUnreadCountChange={(count: number) =>
-          console.log("unread messages count:", count)
-        }
-        onOnlineUsersCountChange={(count: number) =>
-          console.log("online users count:", count)
-        }
       />
     </div>
   );

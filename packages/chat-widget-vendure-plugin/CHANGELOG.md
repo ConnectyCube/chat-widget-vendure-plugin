@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.12.0 (12.10.2025)
+## 0.12.0 (17.10.2025)
 
 - Multi-vendor Marketplaces support
 

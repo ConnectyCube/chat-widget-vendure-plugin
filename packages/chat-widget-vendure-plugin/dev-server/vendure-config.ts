@@ -37,8 +37,8 @@ export const config: VendureConfig = {
     ChatWidgetPlugin.init({
       appId: 8454,
       authKey: "59526294-1DAF-4A4C-A80F-5A3FB3250836",
-      storeName: "MyStore",
-      storeId: "59526294",
+      // storeName: "MyStore",
+      // storeId: "59526294",
     }),
     AdminUiPlugin.init({
       port: 3002,

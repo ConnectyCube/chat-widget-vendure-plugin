@@ -1,6 +1,6 @@
 {
   "name": "@connectycube/vendure-plugins",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "ConnectyCube Vendure plugins repo",
   "repository": "https://github.com/ConnectyCube/chat-widget-vendure-plugin",
   "author": "ConnectyCube",

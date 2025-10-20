@@ -55,7 +55,7 @@ Also, go to **Chat -> Custom Fields** and create a new custom field called `exte
 
 #### Multi-vendor Marketplaces
 
-In a case you have [Multi-vendor Marketplace](https://docs.vendure.io/guides/how-to/multi-vendor-marketplaces/), this plugin also can serve well. No extra configuration of plugin is needed.
+In a case you have [Multi-vendor Marketplace](https://docs.vendure.io/guides/how-to/multi-vendor-marketplaces/), this plugin also can serve well. No extra configuration of plugin is needed. As stated above, the plugin uses Seller entity to identify your store, so each vendor will have its own chat space with customers.
 
 ### Storefront
 
@@ -240,7 +240,23 @@ In a case you have [Multi-vendor Marketplace](https://docs.vendure.io/guides/how
       )
     }
   ```
-    
+
+#### Multi-vendor Marketplace
+
+In a case you have [Multi-vendor Marketplace](https://docs.vendure.io/guides/how-to/multi-vendor-marketplaces/), you do not need to specify the `CHAT_WIDGET_STORE_ID` and `CHAT_WIDGET_STORE_NAME` env variables, as each vendor will have its own chat space with customers based on Seller entity.
+
+Instead of that, you have to fetch Seller info from the product/variant data and pass it to the `ChatWidget` component, so `storeId` and `storeName` should look like this:
+
+```typescript
+  // pseudo code 
+  const storeId = product.seller.id;
+  const storeName = product.seller.name;
+```
+
+The way how to get the seller name for each variant/product depends on your Multi-vendor Marketplace implementation. 
+There is a [Discord discussion](https://discord.com/channels/1100672177260478564/1425419810338115664) about it which may help to figure it out what way works better for your use case.
+
+
 ## How can I use it?
 
 On storefront, once logged in and opened product page, there will be a Chat toggle button bottom right where customers can contact the merchant:

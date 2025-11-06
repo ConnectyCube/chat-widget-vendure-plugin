@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useQuery } from "@vendure/admin-ui/react";
 import { gql } from "graphql-tag";
-import ConnectyCubeChatWidget from "@connectycube/chat-widget/react18"; // dedicated React 18 build
+import ConnectyCubeChatWidget from "@connectycube/chat-widget";
 import { useInjector } from "@vendure/admin-ui/react";
 import { LocalStorageService } from "@vendure/admin-ui/core";
 import { Channel } from "@vendure/core";

@@ -1,7 +1,7 @@
 {
   "name": "@connectycube/vendure-plugin-chat-widget",
   "description": "Vendure plugin for buyer-seller communication via chat widget",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "license": "Apache 2.0",
   "repository": "https://github.com/ConnectyCube/chat-widget-vendure-plugin",
   "homepage": "https://connectycube.com/chat-widget",
@@ -47,7 +47,7 @@
     "graphql-tag": "^2.12.6",
     "lerna": "^9.0.0",
     "prettier": "3.6.2",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "ts-node": "10.9.2",
     "typescript": "5.8.3",
     "unplugin-swc": "^1.5.7",

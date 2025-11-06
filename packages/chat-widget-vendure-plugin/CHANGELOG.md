@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.14.0 (06.11.2025)
+
+- Updated dependencies
+- Fixed internal imports
+
 ## 0.13.0 (20.10.2025)
 
 - Minor documentation updates

@@ -1301,7 +1301,7 @@
     "@rollup/rollup-linux-x64-gnu" "^4.52.5"
 
 "@connectycube/vendure-plugin-chat-widget@file:/Users/vladlukhanin/ConnectyCube/chat-widget-vendure-plugin/packages/chat-widget-vendure-plugin":
-  version "0.11.0"
+  version "0.13.0"
   resolved "file:packages/chat-widget-vendure-plugin"
   dependencies:
     "@connectycube/chat-widget" "0.38.1"

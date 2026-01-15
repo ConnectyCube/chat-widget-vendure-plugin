@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.0 (15.01.2026)
+
+- Resolved issues with "production" env and React versions
+
 ## 0.14.0 (06.11.2025)
 
 - Updated dependencies

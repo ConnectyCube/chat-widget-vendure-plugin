@@ -13,6 +13,7 @@ export const GET_CHAT_WIDGET_PLUGIN_CONFIG = gql`
       authKey
       storeName
       storeId
+      translation
     }
   }
 `;
@@ -41,6 +42,7 @@ type ChatWidgetPluginConfig = {
     authKey: string;
     storeName: string;
     storeId: string;
+    translation: string;
   };
 };
 
@@ -76,7 +78,7 @@ export function Chat() {
   if (!dataConfig?.chatWidgetPluginConfig) return <div>Loading chat</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const { appId, authKey, storeName, storeId } =
+  const { appId, authKey, storeName, storeId, translation = "en" } =
     dataConfig?.chatWidgetPluginConfig;
 
   const portalStyles: React.CSSProperties = {
@@ -106,6 +108,7 @@ export function Chat() {
         embedView={true}
         hideWidgetButton={true}
         portalStyle={portalStyles}
+        translation={translation}
       />
     </div>
   );

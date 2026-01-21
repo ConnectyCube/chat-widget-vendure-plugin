@@ -3,4 +3,5 @@ export interface ChatWidgetOptions {
   authKey: string;
   storeName?: string;
   storeId?: string;
+  translation?: string;
 }

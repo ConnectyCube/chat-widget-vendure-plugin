@@ -9,5 +9,6 @@ export const adminApiExtensionsTypes = gql`
     appId: Int!
     storeName: String
     storeId: String
+    translation: String
   }
 `;

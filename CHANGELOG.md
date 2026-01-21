@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.15.1 (21.01.2026)
+## 0.15.2 (21.01.2026)
 
-- Added Spanish localization
+- Added translation prop (supports "en", "es", "el", "ua")
 
 ## 0.15.0 (15.01.2026)
 

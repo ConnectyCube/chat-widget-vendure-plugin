@@ -182,6 +182,7 @@ In a case you have [Multi-vendor Marketplace](https://docs.vendure.io/guides/how
             // default chat
             defaultChat={defaultChat}
             onOpenChange={onOpenCloseWidget}
+            translation="en"
           />
         </div>
       );

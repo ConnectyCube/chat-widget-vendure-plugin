@@ -39,6 +39,7 @@ export const config: VendureConfig = {
       authKey: "59526294-1DAF-4A4C-A80F-5A3FB3250836",
       // storeName: "MyStore",
       // storeId: "59526294",
+      // translation: "en",
     }),
     AdminUiPlugin.init({
       port: 3002,

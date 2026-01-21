@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.1 (21.01.2026)
+
+- Added Spanish localization
+
 ## 0.15.0 (15.01.2026)
 
 - Resolved issues with "production" env and React versions

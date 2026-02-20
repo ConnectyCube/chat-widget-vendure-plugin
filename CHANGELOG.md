@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.0 (20.02.2026)
+
+- upgrade @connectycube/chat-widget dependency to version 0.41.0
+
 ## 0.15.2 (21.01.2026)
 
 - Added translation prop (supports "en", "es", "el", "ua")
